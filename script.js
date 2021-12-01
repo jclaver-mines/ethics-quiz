@@ -152,6 +152,37 @@ function lerpArr(arr1, arr2, ratio) {
 // DOM interaction
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// converts a question to an HTML div
 function questionToHTML(question) {
+  let parentDiv = document.createElement('div');
+  parentDiv.setAttribute("id", "question-div");
+  parentDiv.setAttribute("question_type", question.type);
 
+  if (question.type == "multiple choice") {
+    // make a multiple choice question!
+  } else if (question.type == "slider") {
+    // make a slider question!
+  }
+
+  return parentDiv;
+}
+
+// finds the value that the user has selected for their current question
+function getSelectedValue() {
+  let parentDiv = document.getElementById("question-div");
+  let questionType = parentDiv.getAttribute("question_type");
+
+  if (questionType == "multiple choice") {
+    // credit to https://stackoverflow.com/a/30917988
+    // for how to effectively find the value of a radio group
+    let checkedButton = document.querySelector("input[name='question-radio']:checked");
+    if (checkedButton == undefined) {
+      return -1;
+    } else {
+      return parseInt(checkedButton.value);
+    }
+  } else if (questionType == "slider") {
+    let slider = document.getElementById("question-slider");
+    return parseInt(slider.value);
+  }
 }

@@ -1,7 +1,21 @@
 <!DOCTYPE html>
 <html>
   <body>
-    hi <br>
+    <h1>awesome ethics quiz</h1>
+
+    <h3>multiple choice question</h3>
+    <div id="question-div" question_type="multiple choice">
+      <input type="radio" id="question-radio-1" name="question-radio" value="1">
+      <label for="question-radio-1">option 1</label> <br>
+      <input type="radio" id="question-radio-2" name="question-radio" value="2">
+      <label for="question-radio-2">option 2</label> <br>
+    </div>
+
+    <h3>slider question</h3>
+    <span id="slider-left">no i hate it!</span>
+      <input id="question-slider" type="range" min="1" max="5" value="3">
+    <span id="slider-right">yes i like it!</span> <br>
+
     <canvas class="comparison_bar" width=100 height=20 id="canvas_conseq"></canvas> <br>
     <canvas class="comparison_bar" width=100 height=20 id="canvas_deonto"></canvas> <br>
     <canvas class="comparison_bar" width=100 height=20 id="canvas_confuc"></canvas>
