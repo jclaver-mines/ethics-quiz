@@ -152,12 +152,16 @@ function lerpArr(arr1, arr2, ratio) {
 // DOM interaction
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// making the quiz object
+let quiz = new EthicsQuiz();
+
 // converts a question to an HTML div
 function questionToHTML(question) {
   // making the parent div
   let parentDiv = document.createElement("div");
   parentDiv.setAttribute("id", "question-div");
   parentDiv.setAttribute("question_type", question.type);
+  parentDiv.style.margin = "10px 0px";
 
   // making the prompt
   let prompt = question.prompt;
@@ -199,8 +203,8 @@ function questionToHTML(question) {
     slider.setAttribute("type", "range");
     slider.setAttribute("id", "question-slider");
     slider.setAttribute("min", "0");
-    slider.setAttribute("max", (question.length - 1));
-    slider.setAttribute("value", Math.floor(question.length / 2));
+    slider.setAttribute("max", (question.barlength - 1));
+    slider.setAttribute("value", Math.floor(question.barlength / 2));
     parentDiv.appendChild(slider);
 
     // making the right label
@@ -230,4 +234,60 @@ function getSelectedValue() {
     let slider = document.getElementById("question-slider");
     return parseInt(slider.value);
   }
+}
+
+// displays the current question
+function displayQuestion() {
+  let question = quiz.getQuestion();
+  let questionHTML = questionToHTML(question);
+
+  let promptContainer = document.getElementById("question-prompt");
+  promptContainer.textContent = "";
+  promptContainer.appendChild(questionHTML);
+}
+
+// advances a question
+function advanceQuestion() {
+  quiz.advanceQuestion();
+}
+
+// submits a question (returns whether or not it was successfully submitted)
+function submitQuestion() {
+  // getting user's choice
+  let choice = getSelectedValue();
+
+  // applying user's choice
+  if (choice == -1) {
+    alert("Please select an answer!");
+    return false;
+  } else {
+    quiz.submitQuestion(choice);
+    quiz.renderBars();
+    return true;
+  }
+}
+
+// begin button
+document.getElementById("btn-begin").onclick = (mouseEvent) => {
+  // swapping begin button for submit button
+  document.getElementById("btn-begin").style.display = "none";
+  document.getElementById("btn-submit").style.display = "";
+
+  // displaying first question
+  displayQuestion();
+}
+
+// submit button
+document.getElementById("btn-submit").onclick = (mouseEvent) => {
+  // submitting a question
+  let submitted = submitQuestion();
+
+  // if we didn't submit successfully, don't proceed
+  if (!submitted) {return;}
+
+  // advancing a question
+  advanceQuestion();
+
+  // displaying the new question
+  displayQuestion();
 }
