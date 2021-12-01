@@ -169,7 +169,7 @@ function questionToHTML(question) {
   let parentDiv = document.createElement("div");
   parentDiv.setAttribute("id", "question-div");
   parentDiv.setAttribute("question_type", question.type);
-  parentDiv.classList = ["margin-bottom"];
+  parentDiv.classList.add("margin-bottom");
 
   // making the title
   let title = question.title;
@@ -348,5 +348,25 @@ document.getElementById("setting-results").onchange = (event) => {
     document.getElementById("results-container").style.display = "";
   } else {
     document.getElementById("results-container").style.display = "none";
+  }
+}
+
+// settings: display tooltips
+document.getElementById("setting-tooltips").onchange = (event) => {
+  let checked = document.getElementById("setting-tooltips").checked;
+  if (checked) {
+    let toTooltip = document.getElementsByClassName("tooltip-able");
+    for (let i = 0; i < toTooltip.length; i++) {
+      let curr = toTooltip[i];
+      curr.classList.remove("tooltip-able");
+      curr.classList.add("tooltip");
+    }
+  } else {
+    let toDeTooltip = document.getElementsByClassName("tooltip");
+    for (let i = 0; i < toDeTooltip.length; i++) {
+      let curr = toDeTooltip[i];
+      curr.classList.remove("tooltip");
+      curr.classList.add("tooltip-able");
+    }
   }
 }
