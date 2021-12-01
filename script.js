@@ -24,12 +24,14 @@ class EthicsQuiz {
     this.questions = [
       {
         type: "multiple choice",
+        title: "The Trolley Problem",
         prompt: "trolley problem default",
         options: ["pull lever (one dies)", "don't pull lever (five die)"],
         outcomes: ["conseq3", "deonto1"]
       },
       {
         type: "slider",
+        title: "The Trolley Problem",
         prompt: "trolley problem family",
         options: ["matters little", "matters a lot"],
         barlength: 5,
@@ -37,6 +39,7 @@ class EthicsQuiz {
       },
       {
         type: "slider",
+        title: "The Trolley Problem",
         prompt: "trolley problem push",
         options: ["push them", "don't push them"],
         barlength: 5,
@@ -166,11 +169,17 @@ function questionToHTML(question) {
   let parentDiv = document.createElement("div");
   parentDiv.setAttribute("id", "question-div");
   parentDiv.setAttribute("question_type", question.type);
-  parentDiv.style.margin = "10px 0px";
+  parentDiv.classList = ["margin-bottom"];
+
+  // making the title
+  let title = question.title;
+  let questionTitle = document.createElement("h3");
+  questionTitle.textContent = title;
+  parentDiv.appendChild(questionTitle);
 
   // making the prompt
   let prompt = question.prompt;
-  let questionPrompt = document.createElement("h3");
+  let questionPrompt = document.createElement("p");
   questionPrompt.textContent = prompt;
   parentDiv.appendChild(questionPrompt);
 
