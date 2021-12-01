@@ -27,6 +27,7 @@ class EthicsQuiz {
         title: "The Trolley Problem",
         prompt: "trolley problem default",
         options: ["pull lever (one dies)", "don't pull lever (five die)"],
+        meanings: ["this choice do be consequentialist", "this choice is deontological (don't break the law by murdering other person)"],
         outcomes: ["conseq3", "deonto1"]
       },
       {
@@ -34,6 +35,7 @@ class EthicsQuiz {
         title: "The Trolley Problem",
         prompt: "trolley problem family",
         options: ["matters little", "matters a lot"],
+        meanings: ["this choice do be consequentialist", "this choice confucian because the role of the other party matters"],
         barlength: 5,
         outcomes: ["conseq3", "confuc3"]
       },
@@ -42,6 +44,7 @@ class EthicsQuiz {
         title: "The Trolley Problem",
         prompt: "trolley problem push",
         options: ["push them", "don't push them"],
+        meanings: ["this choice do be consequentialist", "this choice is deontological (don't break the law by committing murder)"],
         barlength: 5,
         outcomes: ["conseq3", "deonto3"]
       }
@@ -162,6 +165,7 @@ function lerpArr(arr1, arr2, ratio) {
 
 // making the quiz object
 let quiz = new EthicsQuiz();
+let tooltipsEnabled = false;
 
 // converts a question to an HTML div
 function questionToHTML(question) {
@@ -187,6 +191,7 @@ function questionToHTML(question) {
     // make each choice into a radio button choice
     for (let i = 0; i < question.options.length; i++) {
       let option = question.options[i];
+      let meaning = question.meanings[i];
 
       // making the radio button
       let radioButton = document.createElement("input");
@@ -200,6 +205,13 @@ function questionToHTML(question) {
       let radioLabel = document.createElement("label");
       radioLabel.setAttribute("for", ("question-radio-" + i));
       radioLabel.textContent = option;
+
+      // making the tooltip
+      radioLabel.classList.add(tooltipsEnabled ? "tooltip" : "tooltip-able");
+      let tooltip = document.createElement("div");
+      tooltip.textContent = meaning;
+      tooltip.classList.add("tooltiptext");
+      radioLabel.appendChild(tooltip);
       parentDiv.appendChild(radioLabel);
 
       // (newline)
@@ -210,6 +222,13 @@ function questionToHTML(question) {
     // making the left label
     let leftLabel = document.createElement("span");
     leftLabel.textContent = question.options[0];
+
+    // (and its tooltip)
+    leftLabel.classList.add(tooltipsEnabled ? "tooltip" : "tooltip-able");
+    let leftTooltip = document.createElement("div");
+    leftTooltip.textContent = question.meanings[0];
+    leftTooltip.classList.add("tooltiptext");
+    leftLabel.appendChild(leftTooltip);
     parentDiv.appendChild(leftLabel);
 
     // making the slider
@@ -224,6 +243,13 @@ function questionToHTML(question) {
     // making the right label
     let rightLabel = document.createElement("span");
     rightLabel.textContent = question.options[1];
+
+    // (and its tooltip)
+    rightLabel.classList.add(tooltipsEnabled ? "tooltip" : "tooltip-able");
+    let rightTooltip = document.createElement("div");
+    rightTooltip.textContent = question.meanings[1];
+    rightTooltip.classList.add("tooltiptext");
+    rightLabel.appendChild(rightTooltip);
     parentDiv.appendChild(rightLabel);
   }
 
@@ -354,14 +380,13 @@ document.getElementById("setting-results").onchange = (event) => {
 // settings: display tooltips
 document.getElementById("setting-tooltips").onchange = (event) => {
   let checked = document.getElementById("setting-tooltips").checked;
+  let toRemove, toAdd;
   if (checked) {
-    let toTooltip = document.getElementsByClassName("tooltip-able");
-    for (let i = 0; i < toTooltip.length; i++) {
-      let curr = toTooltip[i];
-      curr.classList.remove("tooltip-able");
-      curr.classList.add("tooltip");
-    }
+    toRemove = "tooltip-able";
+    toAdd = "tooltip";
   } else {
+    toRemove = "tooltip";
+    toAdd = "tooltip-able";
     let toDeTooltip = document.getElementsByClassName("tooltip");
     for (let i = 0; i < toDeTooltip.length; i++) {
       let curr = toDeTooltip[i];
@@ -369,4 +394,17 @@ document.getElementById("setting-tooltips").onchange = (event) => {
       curr.classList.add("tooltip-able");
     }
   }
+
+  let toChange = document.getElementsByClassName(toRemove);
+  let toChangeArr = [];
+  for (let i = 0; i < toChange.length; i++) {
+    toChangeArr.push(toChange[i]);
+  }
+  for (let i = 0; i < toChangeArr.length; i++) {
+    let curr = toChangeArr[i];
+    curr.classList.remove(toRemove);
+    curr.classList.add(toAdd);
+  }
+
+  tooltipsEnabled = !tooltipsEnabled;
 }
