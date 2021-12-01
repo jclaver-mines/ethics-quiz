@@ -128,6 +128,11 @@ class EthicsQuiz {
   getQuestion() {
     return this.questions[this.currQuestion];
   }
+
+  // returns whether or not the quiz has been finished
+  isFinished() {
+    return (this.currQuestion >= this.questions.length);
+  }
 }
 
 // renders a single canvas bar with how filled it should be and what color it should be
@@ -267,6 +272,32 @@ function submitQuestion() {
   }
 }
 
+// ends the quiz
+function endQuiz() {
+  // displaying results
+  document.getElementById("setting-results").checked = true;
+  document.getElementById("results-container").style.display = "";
+
+  // hiding submit button
+  document.getElementById("btn-submit").style.display = "none";
+
+  // displaying final text
+  let promptContainer = document.getElementById("question-prompt");
+  promptContainer.textContent = "";
+
+  let p1 = document.createElement("p");
+  p1.textContent = "You've finished the quiz!";
+  promptContainer.appendChild(p1);
+
+  let p2 = document.createElement("p");
+  p2.textContent = "Look at the three bars below to see which type or types of ethical thought you most often use in decision-making.";
+  promptContainer.appendChild(p2);
+
+  let p3 = document.createElement("p");
+  p3.textContent = "(explanations)";
+  promptContainer.appendChild(p3);
+}
+
 // begin button
 document.getElementById("btn-begin").onclick = (mouseEvent) => {
   // swapping begin button for submit button
@@ -288,6 +319,21 @@ document.getElementById("btn-submit").onclick = (mouseEvent) => {
   // advancing a question
   advanceQuestion();
 
-  // displaying the new question
-  displayQuestion();
+  if (quiz.isFinished()) {
+    // finishing the quiz
+    endQuiz();
+  } else {
+    // displaying the new question
+    displayQuestion();
+  }
+}
+
+// settings: display results
+document.getElementById("setting-results").onchange = (event) => {
+  let checked = document.getElementById("setting-results").checked;
+  if (checked) {
+    document.getElementById("results-container").style.display = "";
+  } else {
+    document.getElementById("results-container").style.display = "none";
+  }
 }

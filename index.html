@@ -20,26 +20,35 @@
       </div>
     </div>
 
-    <table>
-    <tr id="conseq-cont">
-      <td>Consequentialism:</td>
-      <td>
-        <canvas class="comparison-bar" width=300 height=30 id="canvas_conseq"></canvas>
-      </td>
-    </tr>
-    <tr id="deonto-cont">
-      <td>Deontology:</td>
-      <td>
-        <canvas class="comparison-bar" width=300 height=30 id="canvas_deonto"></canvas>
-      </td>
-    </tr>
-    <tr id="confuc-cont">
-      <td>Confucian Ethics:</td>
-      <td>
-        <canvas class="comparison-bar" width=300 height=30 id="canvas_confuc"></canvas>
-      </td>
-    </tr>
-    </table>
+    <div id="results-container">
+      <table>
+        <tr id="conseq-cont">
+          <td>Consequentialism:</td>
+          <td>
+            <canvas class="comparison-bar" width=300 height=30 id="canvas_conseq"></canvas>
+          </td>
+        </tr>
+        <tr id="deonto-cont">
+          <td>Deontology:</td>
+          <td>
+            <canvas class="comparison-bar" width=300 height=30 id="canvas_deonto"></canvas>
+          </td>
+        </tr>
+        <tr id="confuc-cont">
+          <td>Confucian Ethics:</td>
+          <td>
+            <canvas class="comparison-bar" width=300 height=30 id="canvas_confuc"></canvas>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="settings-container">
+      <input type="checkbox" id="setting-results" checked>
+      <label for="setting-results">Show Results</label>
+      <input type="checkbox" id="setting-tooltips">
+      <label for="setting-tooltips">Show Answer Meanings on Hover</label>
+    </div>
 
     <script src="script.js"></script>
   </body>
