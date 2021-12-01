@@ -1,30 +1,63 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <h1>awesome ethics quiz</h1>
+    <h1>Nature and Human Values Ethical Thinking Quiz</h1>
 
-    <h3>multiple choice question</h3>
-    <div id="question-div" question_type="multiple choice">
-      <input type="radio" id="question-radio-1" name="question-radio" value="1">
-      <label for="question-radio-1">option 1</label> <br>
-      <input type="radio" id="question-radio-2" name="question-radio" value="2">
-      <label for="question-radio-2">option 2</label> <br>
+    <div id="question-container" class="q-cont">
+      <div id="question-prompt">
+        <p>Welcome to the Nature and Human Values Ethical Thinking Quiz!</p>
+        <p>
+          In this quiz, you will be given various ethical scenarios, before being asked how you would proceed in each one.
+          Based on your responses, the quiz will gauge which broader ethical way or ways of thinking you tend to use in making decisions.
+        </p>
+        <p>
+          You can also use the checkboxes below the quiz to toggle whether or not you can see various elements of the quiz!
+        </p>
+      </div>
+      <div id="question-submit">
+        <button id="btn-begin">Begin!</button>
+        <button id="btn-submit" style="display: none;">Submit</button>
+      </div>
     </div>
 
-    <h3>slider question</h3>
-    <span id="slider-left">no i hate it!</span>
-      <input id="question-slider" type="range" min="1" max="5" value="3">
-    <span id="slider-right">yes i like it!</span> <br>
+    <table>
+    <tr id="conseq-cont">
+      <td>Consequentialism:</td>
+      <td>
+        <canvas class="comparison-bar" width=300 height=30 id="canvas_conseq"></canvas>
+      </td>
+    </tr>
+    <tr id="deonto-cont">
+      <td>Deontology:</td>
+      <td>
+        <canvas class="comparison-bar" width=300 height=30 id="canvas_deonto"></canvas>
+      </td>
+    </tr>
+    <tr id="confuc-cont">
+      <td>Confucian Ethics:</td>
+      <td>
+        <canvas class="comparison-bar" width=300 height=30 id="canvas_confuc"></canvas>
+      </td>
+    </tr>
+    </table>
 
-    <canvas class="comparison_bar" width=100 height=20 id="canvas_conseq"></canvas> <br>
-    <canvas class="comparison_bar" width=100 height=20 id="canvas_deonto"></canvas> <br>
-    <canvas class="comparison_bar" width=100 height=20 id="canvas_confuc"></canvas>
     <script src="script.js"></script>
   </body>
 </html>
 
 <style>
-  .comparison_bar {
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .comparison-bar {
     border: 1px solid black;
+  }
+
+  .q-cont {
+    border: 1px solid black;
+    width: 600px;
+    height: 300px;
+    padding: 5px;
   }
 </style>
