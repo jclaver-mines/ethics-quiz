@@ -286,16 +286,20 @@ function endQuiz() {
   promptContainer.textContent = "";
 
   let p1 = document.createElement("p");
-  p1.textContent = "You've finished the quiz!";
+  p1.textContent = "You've finished the quiz! Look at the three bars below to see which type or types of ethical thought you most often use in decision-making.";
   promptContainer.appendChild(p1);
 
   let p2 = document.createElement("p");
-  p2.textContent = "Look at the three bars below to see which type or types of ethical thought you most often use in decision-making.";
+  p2.textContent = "Consequentialism dictates that decisions should be made based on how much they improve the overall happiness of different people. Regardless of what actions are taken, the more people made happy, the better.";
   promptContainer.appendChild(p2);
 
   let p3 = document.createElement("p");
-  p3.textContent = "(explanations)";
+  p3.textContent = "Deontology dictates that decisions should be made based on whether the action itself is right or wrong. Morality is based on rules, and not on consequences.";
   promptContainer.appendChild(p3);
+
+  let p4 = document.createElement("p");
+  p4.textContent = "Confucian Ethics dictates that decisions should be made based on the actor's relationship to the affected parties. We have obligations to different people, and those obligations should determine how we act.";
+  promptContainer.appendChild(p4);
 }
 
 // begin button
