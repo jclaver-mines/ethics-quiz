@@ -154,14 +154,59 @@ function lerpArr(arr1, arr2, ratio) {
 
 // converts a question to an HTML div
 function questionToHTML(question) {
-  let parentDiv = document.createElement('div');
+  // making the parent div
+  let parentDiv = document.createElement("div");
   parentDiv.setAttribute("id", "question-div");
   parentDiv.setAttribute("question_type", question.type);
 
+  // making the prompt
+  let prompt = question.prompt;
+  let questionPrompt = document.createElement("h3");
+  questionPrompt.textContent = prompt;
+  parentDiv.appendChild(questionPrompt);
+
   if (question.type == "multiple choice") {
-    // make a multiple choice question!
+    // make each choice into a radio button choice
+    for (let i = 0; i < question.options.length; i++) {
+      let option = question.options[i];
+
+      // making the radio button
+      let radioButton = document.createElement("input");
+      radioButton.setAttribute("type", "radio");
+      radioButton.setAttribute("id", ("question-radio-" + i));
+      radioButton.setAttribute("name", "question-radio");
+      radioButton.setAttribute("value", i);
+      parentDiv.appendChild(radioButton);
+
+      // making the label
+      let radioLabel = document.createElement("label");
+      radioLabel.setAttribute("for", ("question-radio-" + i));
+      radioLabel.textContent = option;
+      parentDiv.appendChild(radioLabel);
+
+      // (newline)
+      let radioNewline = document.createElement("br");
+      parentDiv.appendChild(radioNewline);
+    }
   } else if (question.type == "slider") {
-    // make a slider question!
+    // making the left label
+    let leftLabel = document.createElement("span");
+    leftLabel.textContent = question.options[0];
+    parentDiv.appendChild(leftLabel);
+
+    // making the slider
+    let slider = document.createElement("input");
+    slider.setAttribute("type", "range");
+    slider.setAttribute("id", "question-slider");
+    slider.setAttribute("min", "0");
+    slider.setAttribute("max", (question.length - 1));
+    slider.setAttribute("value", Math.floor(question.length / 2));
+    parentDiv.appendChild(slider);
+
+    // making the right label
+    let rightLabel = document.createElement("span");
+    rightLabel.textContent = question.options[1];
+    parentDiv.appendChild(rightLabel);
   }
 
   return parentDiv;
