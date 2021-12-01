@@ -25,28 +25,27 @@ class EthicsQuiz {
       {
         type: "multiple choice",
         title: "The Trolley Problem",
-        prompt: "trolley problem default",
-        options: ["pull lever (one dies)", "don't pull lever (five die)"],
-        meanings: ["this choice do be consequentialist", "this choice is deontological (don't break the law by murdering other person)"],
-        outcomes: ["conseq3", "deonto1"]
+        prompt: "An out-of-control train is going down the tracks, and it will hit five people if it keeps going on its current course. However, you can pull a lever that redirects the train onto a different track, and it will only kill one person. Should you pull the lever?",
+        options: ["Pull the lever (one dies)", "Don't pull the lever (five die)"],
+        meanings: ["This choice is more consequentialist, since it aims to save more people.", "This choice is more deontological, since although you save less people, you are not the murderer of the one person."],
+        outcomes: ["conseq2", "deonto3"]
       },
       {
         type: "slider",
-        title: "The Trolley Problem",
-        prompt: "trolley problem family",
-        options: ["matters little", "matters a lot"],
-        meanings: ["this choice do be consequentialist", "this choice confucian because the role of the other party matters"],
-        barlength: 5,
-        outcomes: ["conseq3", "confuc3"]
+        title: "The Trolley Problem 2",
+        prompt: "Now, what if the people on the tracks are members of your friends or family? How much does this matter in your decision?",
+        options: ["Matters very little", "Matters very much"],
+        meanings: ["This side is more consequentialist, since it aims to save more people, even at the expense of family or friends.", "This side is more Confucian, since the decision itself is based on our obligations and connections to the people on the tracks."],
+        barlength: 10,
+        outcomes: ["conseq3", "confuc2"]
       },
       {
-        type: "slider",
-        title: "The Trolley Problem",
-        prompt: "trolley problem push",
-        options: ["push them", "don't push them"],
-        meanings: ["this choice do be consequentialist", "this choice is deontological (don't break the law by committing murder)"],
-        barlength: 5,
-        outcomes: ["conseq3", "deonto3"]
+        type: "multiple choice",
+        title: "The Trolley Problem 3",
+        prompt: "Now, imagine that in our original scenario, rather than pulling a lever, you had to push a person in front of the train, which would stop the train on impact. Would you push the person in front of the train to save the other five?",
+        options: ["Push them (one dies)", "Don't push them (five die)"],
+        meanings: ["This choice is more consequentialist, since it aims to save more people.", "This choice is more deontological, since although you save less people, you are not the murderer of the one person."],
+        outcomes: ["conseq3", "deonto2"]
       }
     ]
   }
@@ -329,11 +328,11 @@ function endQuiz() {
   promptContainer.appendChild(p2);
 
   let p3 = document.createElement("p");
-  p3.textContent = "Deontology dictates that decisions should be made based on whether the action itself is right or wrong. Morality is based on rules, and not on consequences.";
+  p3.textContent = "Deontology dictates that decisions should be made based on whether the action itself is generally right or wrong. Morality is based on rules, and not on consequences.";
   promptContainer.appendChild(p3);
 
   let p4 = document.createElement("p");
-  p4.textContent = "Confucian Ethics dictates that decisions should be made based on the actor's relationship to the affected parties. We have obligations to different people, and those obligations should determine how we act.";
+  p4.textContent = "Confucian Ethics dictates that decisions should be made based on the actor's relationship to the affected parties. We have different obligations to different people, and those obligations should determine how we act.";
   promptContainer.appendChild(p4);
 }
 
