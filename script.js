@@ -36,16 +36,65 @@ class EthicsQuiz {
         prompt: "Now, what if the people on the tracks are members of your friends or family? How much does this matter in your decision?",
         options: ["Matters very little", "Matters very much"],
         meanings: ["This side is more consequentialist, since it aims to save more people, even at the expense of family or friends.", "This side is more Confucian, since the decision itself is based on our obligations and connections to the people on the tracks."],
-        barlength: 10,
+        barlength: 15,
         outcomes: ["conseq3", "confuc2"]
       },
       {
         type: "multiple choice",
         title: "The Trolley Problem 3",
-        prompt: "Now, imagine that in our original scenario, rather than pulling a lever, you had to push a person in front of the train, which would stop the train on impact. Would you push the person in front of the train to save the other five?",
+        prompt: "Now, imagine that in our original scenario, rather than pulling a lever, you could push a person in front of the train, which would stop the train on impact. Would you push the person in front of the train to save the other five?",
         options: ["Push them (one dies)", "Don't push them (five die)"],
         meanings: ["This choice is more consequentialist, since it aims to save more people.", "This choice is more deontological, since although you save less people, you are not the murderer of the one person."],
         outcomes: ["conseq3", "deonto2"]
+      },
+      {
+        type: "slider",
+        title: "Monetary Transfer",
+        prompt: "Your boss at the company you work at has a great excess of money, so you decide to steal some of it to donate to local charities helping people in need. Are your actions morally justified?",
+        options: ["No", "Yes"],
+        meanings: ["This side is more deontological, since it values obeying laws first.", "This side is more consequentialist, since it aims to take a small amount of money from your boss to greatly benefit people in need."],
+        barlength: 15,
+        outcomes: ["deonto2", "conseq2"]
+      },
+      {
+        type: "slider",
+        title: "Monetary Transfer 2",
+        prompt: "Now, imagine that instead of taking the money from your boss, you took it from a random person in a similar financial situation to your boss. How much does this matter in your decision?",
+        options: ["Matters very little", "Matters very much"],
+        meanings: ["This side is less Confucian, since our relationship to affected parties has little impact on our decision.", "This side is more Confucian, since our relationship to affected parties has a large impact on our decision."],
+        barlength: 15,
+        outcomes: ["confuc1", "confuc3"]
+      },
+      {
+        type: "multiple choice",
+        title: "Borrowed Goat",
+        prompt: "You learn that your father has taken a goat from your neighbor without telling them. Will you turn him in to the authorities?",
+        options: [
+          "Yes. Stealing is wrong!", 
+          "It depends. Who needs the goat more?", 
+          "No. But, I would want to somehow repay our neighbor for what happened.", 
+          "No. My father is more important to me than a single goat is to our neighbor."
+        ],
+        meanings: [
+          "This choice is deontological, since the main concern is that the action is unlawful.",
+          "This choice is largely consequentialist, since the main concern is who can benefit the most from the goat.",
+          "This choice is generally Confucian, since you don't want to turn in your father, who you have strong obligations to. But it is also somewhat deontological, since you want to make reparations for the unlawful activity.",
+          "This choice is Confucian, since the main concern is your own obligations to your father."
+        ],
+        outcomes: [
+          "deonto3",
+          "conseq3",
+          "deonto1 confuc2",
+          "confuc3"
+        ]
+      },
+      {
+        type: "multiple choice",
+        title: "Borrowed Goat 2",
+        prompt: "Now, imagine that your father has taken the goat, but you already had several more goats to begin with. As far as you can tell, you have no need for any extra goats. How much does knowing this matter in your decision?",
+        options: ["Matters very little", "Matters very much"],
+        meanings: ["This side is more deontological and Confucian, since the main concern is either the lawfulness of the decision, or our obligation to our father.", "This side is more consequentialist, since the main concern is the utility of the goat."],
+        outcomes: ["deonto2 confuc2", "conseq3"]
       }
     ]
   }
@@ -324,7 +373,7 @@ function endQuiz() {
   promptContainer.appendChild(p1);
 
   let p2 = document.createElement("p");
-  p2.textContent = "Consequentialism dictates that decisions should be made based on how much they improve the overall happiness of different people. Regardless of what actions are taken, the more people made happy, the better.";
+  p2.textContent = "Consequentialism dictates that decisions should be made based on how much they improve the overall happiness of different people. Regardless of what actions are taken, the more people are made happy, the better.";
   promptContainer.appendChild(p2);
 
   let p3 = document.createElement("p");
