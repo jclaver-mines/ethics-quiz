@@ -50,8 +50,8 @@ class EthicsQuiz {
       {
         type: "slider",
         title: "Monetary Transfer",
-        prompt: "Your boss at the company you work at has a great excess of money, so you decide to steal some of it to donate to local charities helping people in need. Are your actions morally justified?",
-        options: ["No", "Yes"],
+        prompt: "Your boss at the company you work at has a great excess of money, so you decide to steal some of it to donate to local charities helping people in need. How justified are your actions?",
+        options: ["Not justified", "Justified"],
         meanings: ["This side is more deontological, since it values obeying laws first.", "This side is more consequentialist, since it aims to take a small amount of money from your boss to greatly benefit people in need."],
         barlength: 15,
         outcomes: ["deonto2", "conseq2"]
@@ -89,11 +89,12 @@ class EthicsQuiz {
         ]
       },
       {
-        type: "multiple choice",
+        type: "slider",
         title: "Borrowed Goat 2",
         prompt: "Now, imagine that your father has taken the goat, but you already had several more goats to begin with. As far as you can tell, you have no need for any extra goats. How much does knowing this matter in your decision?",
         options: ["Matters very little", "Matters very much"],
         meanings: ["This side is more deontological and Confucian, since the main concern is either the lawfulness of the decision, or our obligation to our father.", "This side is more consequentialist, since the main concern is the utility of the goat."],
+        barlength: 15,
         outcomes: ["deonto2 confuc2", "conseq3"]
       }
     ]
